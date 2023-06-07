@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ResultModels")
+@RequestMapping("/SATResults")
 public class ResultController {
 
     @Autowired
@@ -17,14 +17,14 @@ public class ResultController {
    
    
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<String> insertResultModel(@RequestBody ResultModel ResultModel) {
          resultService.insertResultModel(ResultModel);
          String response= "Details inserted successfully";
          return new ResponseEntity<>(response,HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("/getAll")
     public List<ResultModel> getAllResultModels() {
         return resultService.getAllResultModels();
     }
@@ -47,7 +47,7 @@ public class ResultController {
 
     }
 
-    @DeleteMapping("/{name}")
+    @DeleteMapping("/delete/{name}")
     public ResponseEntity<String> deleteResultModelByName(@PathVariable String name) {
         try {
             resultService.deleteResultModelByName(name);
